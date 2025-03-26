@@ -1,0 +1,88 @@
+server:
+  port: 9888
+spring:
+  application:
+    name: dictmars-controller
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: ${mars.datasource.url}
+    username: ${mars.datasource.username}
+    password: ${mars.datasource.password}
+  redis:
+    #redis 单机环境配置
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    ssl: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+jetcache:
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+  remote:
+    default:
+      type: redis
+      keConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 20
+      host: 127.0.0.1
+      port: 6379
+
+mars:
+  datasource:
+#    url: jdbc:mysql://22.0.0.101:18859/mars_base?serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
+#    username: root
+#    password: admin123456
+     url: jdbc:mysql://rm-bp1edh5q6dtdn5430xo.mysql.rds.aliyuncs.com:3306/mars?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
+     username: root
+     password: CHENfei0101
+  tenant:
+    enable: false
+  park:
+    enable: false
+
+justauth:
+  enabled: true
+  extend:
+    enumClass: com.ctsi.uaa.social.AuthCustomSource
+    config:
+      TELECOM:
+        requestClass: com.ctsi.uaa.social.AuthTelecomRequest
+        clientId: CTAHEDAWJJYGK20150505
+        client-secret: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKVV2kiz+Y1LEX/cwsfBZoOb+ZDv8p339eJBYCCbxAZbKPUbMRBNLerbPTx4mXPWGSDXaNYm7yofyRGb6hF397EZNpLHLWCnMYFDsrM4EE8al66qmpO0AF5V3t8BmK9Su77OICvTDD68Qznat74B3TDsIp4psBtzGc6UryylVkVpAgMBAAECgYB9PkzNmDApXT1TW3rdcN7kQYpKxclG6ugDTbyw1u4mVnXvPnrrO1vWNd/sZ/ruabe9ThAncXTotw1MXoxwUS16baiBt947mnQyF3FMp0dTerGjSqn6/feRjDDscBIM6BIkTe5mBe/FlJ90WyRhJMEAr3Ue+qOfKkiYlA0q+Y/GgQJBANPQ+b7TGbEtzf2WlLTPUtAv3Ztfd2PGbrUzrfSB1D6s8E5n2VUt+/xrP5D/mzouBRJzPbge7rYffIFi4ppLi/ECQQDH0sl/aKQd5uHgQ8XmBL9Jrtla3IzohNADf3cnwbsE4bXLD0SiVjoFudO760HNL4RgbadJUQ7240bDeuj3Vaj5AkBsL2MvzOBld3Crofpn8zBn9tqoHfV7t4EZ+cBSjvEZ5fiDA1WkxOzcOubnpzXgXFro1oVigiIIUUKlTx1QE1/xAkAacnmc1VqzYnWO2yl8MjCnLe8yqXI07C8j52D78BYypTUMdS7eVY9EZr3xZ0fEQn/Ay4KSn5ndb2NUSBZBdiLxAkEApTeDtOj/657qKQ+/LcBeqG2r7mFUybNMhiqXhWziuSf97T01Co76ty38uvheFkBrEHhsm7sj7h7AO8J9t9b6NA==
+        redirectUri: http://localhost:9888/auth/callback/telecom
+        grant-type: authorization_code
+      HIAUTH:
+        requestClass: com.ctsi.uaa.social.AuthHiauthRequest
+        clientId: datapark
+        client-secret:  12345
+        redirectUri:  http://localhost:9888/auth/callback/hiauth
+        grant-type: authorization_code
+  cache:
+    type: redis
+    prefix: 'SOCIAL::STATE::'
+    timeout: 1h
+
+social:
+  vue:
+    url: http://localhost:9999/socialcallback
+    domain: localhost
+
+dict:
+  atom:
+    sms:
+      app-id: a54238854e6bfa9f673d434e7d7dd5c9
+      app-key:  1658ba77cb9bf1f03600233b0944fd25
+  fastdfs:
+    tracker: 192.168.3.12:22122

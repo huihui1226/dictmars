@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "social.vue",
+      "type": "com.ctsi.config.SocialConfig",
+      "sourceType": "com.ctsi.config.SocialConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "social.vue.domain",
+      "type": "java.lang.String",
+      "sourceType": "com.ctsi.config.SocialConfig"
+    },
+    {
+      "name": "social.vue.url",
+      "type": "java.lang.String",
+      "sourceType": "com.ctsi.config.SocialConfig"
+    }
+  ],
+  "hints": []
+}
