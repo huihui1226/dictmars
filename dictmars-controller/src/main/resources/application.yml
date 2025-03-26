@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: @spring.active@
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    ssl: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      validation-query: select 1
